@@ -1,17 +1,21 @@
 cmake_minimum_required(VERSION 3.10)
-project(AimTrainer)
+project(cAimbot)
+
+# Include headers from include/
+include_directories(include)
 
 # Find OpenCV
 find_package(OpenCV REQUIRED COMPONENTS
-	core
-	imgproc
-	cudaarithm
-	cudafilters
-	cudaimgproc
-	cudev # added for GpuMat support
+	core # both
+	imgproc # both
+	cudaarithm # nvidia only
+	cudafilters # nvidia only
+	cudaimgproc # nvidia only
+	cudev # nvidia only , added for GpuMat support
 )
 
-if(OpenCV_FOUND AND OpenCV_CUDA_FOUND)
+# Check if OpenCV CUDA modules exist (optional)
+if(OpenCV_CUDA_FOUND)
     message(STATUS "CUDA-accelerated OpenCV detected")
     target_compile_definitions(AimTrainer PRIVATE USE_CUDA=1)
 else()
@@ -24,15 +28,15 @@ if (WIN32)
 endif()
 
 # Source files
-add_executable(AimTrainer
-    main.cpp
-    ScreenCapturer.cpp
-    TargetDetector.cpp
-    InputController.cpp
+add_executable(cAimbot
+    src/main.cpp
+    src/ScreenCapturer.cpp
+    src/TargetDetector.cpp
+    src/InputController.cpp
 )
 
 # Link libraries
 target_link_libraries(AimTrainer
     ${OpenCV_LIBS}
-    d3d11 dxgi  # Windows DirectX
+    d3d11 dxgi  # nvidia only , Windows DirectX
 )
