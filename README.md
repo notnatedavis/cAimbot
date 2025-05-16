@@ -1,7 +1,7 @@
-# **cAimbot**
-an aimbot program entirely in C (python was too slow so I wanted to give my attempt at something quicker)
+# **cAimbot**  
+an aimbot program entirely in C (python was too slow so I wanted to give my attempt at something quicker)  
 
-_current project structure_
+_current project structure_  
 
 cAimbot/
  - include/
@@ -18,11 +18,11 @@ cAimbot/
  - ReadMe.md
  - .gitignore
 
-### **Things to implement**
+### **Things to implement**  
 
-### **Compilation**
+### **Compilation**  
 1. `x`
 
-### **Other Notes**
+### **Other Notes**  
 
-### **Issues / Debug**
+### **Issues / Debug**  
