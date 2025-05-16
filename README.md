@@ -25,7 +25,8 @@ _Asahi Linux (Fedora)_
 1. `sudo dnf update`
 2. `sudo dnf install cmake gcc-c++ git make` # compiler & build tools
 3. `sudo dnf install opencv-devel` # OpenCV dev libs
-4. `x`
+4. `cd ~/projects/cAimbot`
+5. `mkdir -p build && cd build`
 
 _Windows_
 1. `x`
