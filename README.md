@@ -1,11 +1,28 @@
-# cAimbot
+# **cAimbot**
 an aimbot program entirely in C (python was too slow so I wanted to give my attempt at something quicker)
 
-### Things to implement
+_current project structure_
 
-### Compilation
+cAimbot
+ - include/
+    - InputController.hpp
+    - SafetyHandler.hpp
+    - ScreenCapturer.hpp
+    - TargetDetector.hpp
+ - src/
+    - main.cpp
+    - InputController.cpp
+    - ScreenCapturer.cpp
+    - TargetDetector.cpp
+ - CMakeLists.txt
+ - ReadMe.md
+ - .gitignore
+
+### **Things to implement**
+
+### **Compilation**
 1. `x`
 
-### Other notes
+### **Other Notes**
 
-### Issues / Debug
+### **Issues / Debug**
