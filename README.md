@@ -3,7 +3,7 @@ an aimbot program entirely in C (python was too slow so I wanted to give my atte
 
 _current project structure_
 
-cAimbot
+cAimbot/
  - include/
     - InputController.hpp
     - SafetyHandler.hpp
