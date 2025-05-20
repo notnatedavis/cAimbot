@@ -1,9 +1,9 @@
-///// InputController.hpp
+// ----- InputController.hpp ----- //
 
 #pragma once
 
 /*
- * minimal stateless interface for mouse control, needs to be called 100+/sec without
+ * minimal stateless interface for mouse control, needs to be called 100+/sec w/o
  * latency
  */
 class InputController {

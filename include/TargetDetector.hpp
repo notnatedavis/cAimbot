@@ -1,4 +1,4 @@
-///// TargetDetector.hpp
+// ----- TargetDetector.hpp ----- //
 
 #pragma once
 #include <opencv2/opencv.hpp> // for real time computer vision (needed for low latency)
