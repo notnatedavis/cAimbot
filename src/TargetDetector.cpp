@@ -1,4 +1,4 @@
-///// TargetDetector.cpp
+// ----- TargetDetector.cpp ----- //
 
 #include "TargetDetector.hpp"
 #include <opencv2/core/cuda.hpp>  // required for CUDA (gpu acceleration)
@@ -39,7 +39,7 @@ cv::Point TargetDetector::find_shape_centroid(const cv::Mat& screen) const {
     cv::findContours(m_mask, contours, cv::RETR_EXTERNAL, cv::CHAIN_APPROX_SIMPLE);
     // RETR_EXTERNAL ignores holes in targets + CHAIN_APPROX_SIMPLE compresses segments (hor/ver)
     
-    if (contours.empty()) return cv::Point(-1, -1);
+    if (contours.empty()) return cv::Point(-1, -1); // set as dull val
 
     // find largest contour
     auto largest = std::max_element(contours.begin(), contours.end(),
@@ -48,6 +48,7 @@ cv::Point TargetDetector::find_shape_centroid(const cv::Mat& screen) const {
     // scale centroid back to original ROI coordinates
     cv::Moments m = cv::moments(*largest); // calculate distribution of contour pixles
     if (m.m00 <= 0.01) return cv::Point(-1, -1);  // add zero-area check
+    
     // multiplication is cheaper than cv::resize upscaling
     return cv::Point(static_cast<int>(m.m10/m.m00 * (1/scale_factor)), static_cast<int>(m.m01/m.m00 * (1/scale_factor)));
 }

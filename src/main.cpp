@@ -1,4 +1,4 @@
-///// main.cpp
+// ----- main.cpp ----- //
 
 #include "ScreenCapturer.hpp"
 #include "TargetDetector.hpp"
@@ -10,6 +10,7 @@
  * low latency control loop for main execution of program
  */
 int main() {
+
     // load color range for borders (e.g., red: HSV 0-10)
     TargetDetector detector(
         cv::Scalar(164, 100, 71), // lower bound (H,S,V)
@@ -24,13 +25,16 @@ int main() {
     std::cout << "Press F2 to start/stop, F10 to exit\n"; // update keys to custom in SafetyHandler
 
     while (!safety.emergency()) {
+    
         safety.update();
 
         if (safety.is_active()) {
+        
             cv::Mat screen = capturer.capture();
 
             // empty check
             if (!screen.empty()) {
+            
                 cv::Point target = detector.find_shape_centroid(screen);
             
                 if (target.x != -1) {
@@ -40,7 +44,7 @@ int main() {
                 }
             }
         } else {
-            Sleep(100);  // reduce CPU usage when inactive
+            Sleep(100);  // reduce CPU usage when inactive (update)
         }
     }
 

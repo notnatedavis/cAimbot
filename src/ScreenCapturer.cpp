@@ -1,4 +1,4 @@
-///// ScreenCapturer.cpp
+// ----- ScreenCapturer.cpp ----- //
 
 #include "ScreenCapturer.hpp"
 #include <Windows.h> // enables access to DirectX
@@ -7,6 +7,7 @@
  * low latency screen capture
  */
 ScreenCapturer::ScreenCapturer() {
+
     // initialize DirectX + create DXGI factory for graphics adapter
     IDXGIFactory1* factory;
     CreateDXGIFactory1(__uuidof(IDXGIFactory1), (void**)&factory);
@@ -16,7 +17,7 @@ ScreenCapturer::ScreenCapturer() {
     // create D3D11 Device w/ minimal feature level
     HRESULT hr = D3D11CreateDevice(adapter, D3D_DRIVER_TYPE_UNKNOWN, nullptr, 0, nullptr, 0, D3D11_SDK_VERSION, &m_device, nullptr, &m_context);
     if (FAILED(hr)) {
-        throw std::runtime_error("Failed to create D3D11 device");
+        throw std::runtime_error("Failed to create D3D11 device"); // report
     }
 
     // get (primary) monitor output
@@ -28,13 +29,13 @@ ScreenCapturer::ScreenCapturer() {
     const int screen_height = outputDesc.DesktopCoordinates.bottom - outputDesc.DesktopCoordinates.top;
     
     // initialize duplication interface
-    // might need admin access to execute
+    // might need admin access to execute (check)
     IDXGIOutput1* output1;
     output->QueryInterface(__uuidof(IDXGIOutput1), (void**)&output1);
     hr = output1->DuplicateOutput(m_device, &m_duplication);
     output1->Release();
     if (FAILED(hr)) {
-        throw std::runtime_error("Failed to create output duplication");
+        throw std::runtime_error("Failed to create output duplication"); // report
     }
 
     // create reusable staging texture (CPU readback)
@@ -46,16 +47,16 @@ ScreenCapturer::ScreenCapturer() {
     stagingDesc.ArraySize = 1;
     stagingDesc.Format = DXGI_FORMAT_B8G8R8A8_UNORM; // desktop format (avoids conversion)
     stagingDesc.SampleDesc.Count = 1;
-    stagingDesc.Usage = D3D11_USAGE_STAGING; // enables CPU acces but disables GPU writes
+    stagingDesc.Usage = D3D11_USAGE_STAGING; // enables CPU access but disables GPU writes
     stagingDesc.CPUAccessFlags = D3D11_CPU_ACCESS_READ;
     
     hr = m_device->CreateTexture2D(&stagingDesc, nullptr, &m_stagingTex);
     if (FAILED(hr)) {
-        throw std::runtime_error("Failed to create staging texture");
+        throw std::runtime_error("Failed to create staging texture"); // report
     }
     
     // hardcoded ROI (adjustable values)
-    m_roi = cv::Rect( // assuming res is 1920x1080
+    m_roi = cv::Rect( // assuming native res is 1920x1080
         760, // x (center - 200)
         340, // y (center - 200)
         400, // width 
@@ -74,6 +75,7 @@ ScreenCapturer::ScreenCapturer() {
  * capture single frame and returns as OpenCV Mat for target detection
  */
 cv::Mat ScreenCapturer::capture() {
+
     DXGI_OUTDUPL_FRAME_INFO frameInfo;
     IDXGIResource* resource = nullptr;
     HRESULT hr = m_duplication->AcquireNextFrame(0, &frameInfo, &resource);
@@ -120,7 +122,11 @@ cv::Mat ScreenCapturer::capture() {
     return m_cropped;
 }
 
+/*
+ * handles resource cleanup
+ */
 ScreenCapturer::~ScreenCapturer() {
+
     // cleanup DirectX resources
     if (m_stagingTex) {
         m_stagingTex->Release();
