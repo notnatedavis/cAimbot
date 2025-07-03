@@ -1,5 +1,6 @@
-# **cAimbot**  
-an aimbot program entirely in C (python was too slow so I wanted to give my attempt at something quicker)  
+# Installation Scripts
+
+This is a repository containing an Aimbot program entirely written in C focusing on pure performance and execution. 
 
 _current project structure_  
 
@@ -16,11 +17,31 @@ cAimbot/
     - TargetDetector.cpp
  - CMakeLists.txt
  - ReadMe.md
- - .gitignore
+ - .gitignore (update!)
 
-### **Things to implement**  
+## Table of Contents
+- [Introduction](#introduction)
+- [Features](#features)
+- [Prerequisites](#prerequisites)
+- [Usage](#usage)
+- [Additional-Information](#Additional-Info)
 
-### **Compilation**  
+## Introduction
+
+(in depth synopsis of what proj is, what it does, how it does, what is needed to do)
+
+## Features
+
+- execute C based program for aimbot with toggleable settings and overlay?
+
+## Prerequisites
+
+- (all necessary prereq steps *universally useful*)
+- JDK
+
+## Usage 
+review + update all this
+
 _Asahi Linux (Fedora)_
 1. `sudo dnf update`
 2. `sudo dnf install cmake gcc-c++ git make` # compiler & build tools
@@ -31,6 +52,9 @@ _Asahi Linux (Fedora)_
 _Windows_
 1. `x`
 
-### **Other Notes**  
+_MacOS_
+1. `x`
 
-### **Issues / Debug**  
+## Additional-Info
+
+This portion is for logging or storing notes relevent to the project and its scope.
