@@ -1,4 +1,4 @@
-# Installation Scripts
+# C Aimbot
 
 This is a repository containing an Aimbot program entirely written in C focusing on pure performance and execution. 
 
