@@ -1,8 +1,29 @@
-# Project Specific
-*.idea
+# .gitignore universal template
 
-# Prerequisites
+# update / review to make sure .gitignore works
+
+# important keep
+!/gradlew
+!/gradlew.bat
+!/gradle/wrapper/gradle-wrapper.jar
+!/gradle/wrapper/gradle-wrapper.properties
+
+# Prerequisites (Project Specific)
 *.d
+*.jpg
+*.png
+*.bmp
+*.idea
+*.idea/
+*.vscode
+*.vscode/
+*.DS_Store
+*.DS_Store/
+*.bin/
+/bin/
+/build/
+/.gradle/
+
 
 # Object files
 *.o
