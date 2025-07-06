@@ -6,9 +6,7 @@
 #include "SafetyHandler.hpp"
 #include <iostream>
 
-/*
- * low latency control loop for main execution of program
- */
+// low latency control loop for main execution of program
 int main() {
 
     // load color range for borders (e.g., red: HSV 0-10)
