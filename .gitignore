@@ -1,6 +1,6 @@
 # .gitignore universal template
 
-# update / review to make sure .gitignore works
+# update / review to make sure .gitignore works (suit to C)
 
 # important keep
 !/gradlew

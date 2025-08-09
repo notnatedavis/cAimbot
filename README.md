@@ -90,3 +90,127 @@ _MacOS_
 ## Additional-Info
 
 This portion is for logging or storing notes relevent to the project and its scope.
+
+## Current Focus (check off as I go)
+
+Critical Fixes & Stability
+
+1. Memory Management & Resource Leaks
+
+- Fix DXGI resource leaks in `ScreenCapturer` (missing Release() for factory/adapter/output)
+- Add error handling in ScreenCapturer::capture() for DXGI_ERROR_ACCESS_LOST (requires reinitialization)
+- Validate COM object initialization with SUCCEEDED() checks
+
+2. Thread Safety
+
+- Make InputController::move_mouse() thread-safe (currently non-reentrant)
+- Add mutexes for shared resources (e.g., ScreenCapturer buffers)
+- Implement atomic flags in main loop for emergency stop
+
+3. Emergency System
+
+- Global hotkey listener (separate thread) for F10 kill switch
+- Add stack unwinding for graceful shutdown
+- Windows UAC compatibility notes in README
+
+Performance Optimizations
+
+1. Capture Pipeline
+
+- ROI cropping during texture mapping (avoid full-screen conversion)
+- Direct BGRA→HSV conversion (eliminate intermediate BGR step)
+- DXGI desktop duplication with partial framebuffer updates
+
+2. Detection System
+
+- Dynamic downscaling (adjust based on FPS: 0.5x → 0.8x)
+- CUDA-accelerated contour detection (cv::cuda::findContours)
+- Background subtraction for moving targets
+- Temporal coherence (reuse previous frame's mask)
+
+3. Input Pipeline
+
+- Replace Sleep() with high-precision timers (std::chrono)
+- Mouse movement prediction (linear extrapolation)
+- Configurable smoothing curves (easing functions)
+
+Core Features
+
+1. Dynamic Targeting
+
+- Kalman filtering for target trajectory prediction
+- Multi-contour analysis (closest to crosshair, largest area)
+- HSV range auto-calibration (F3 to sample target area)
+
+2. Adaptive ROI
+
+- ROI centering around last detection
+- Dynamic sizing based on target velocity
+- Manual ROI adjustment via config
+
+3. Input Modes
+
+- Raw input API support (for protected games)
+- Absolute/relative mouse mode toggle
+- Humanizer module (randomized movement curves) ?
+
+Configuration & Usability
+
+1. Config System
+
+- INI/JSON configuration (color ranges, ROI, hotkeys, smoothing)
+- Runtime reloading (F5 to refresh config)
+- CLI argument parsing
+
+2. Diagnostic UI
+
+- DirectX overlay (ROI boundaries, target lock indicator)
+- Performance metrics (FPS, processing time)
+- Detection preview window (debug mode)
+
+3. Calibration Tools
+
+- HSV range tester with sliders
+- ROI visual positioning tool
+- Mouse sensitivity profiler
+
+Code Quality & Maintenance
+
+1. Platform Abstraction
+
+- Interface classes for input/capture (enable Linux/Wine support)
+- CMake options for CUDA/DirectX
+- Error code standardization
+
+2. Build System
+
+- Fix target names (cAimbot vs AimTrainer)
+- OpenCV CUDA conditional compilation
+- CI/CD pipeline (GitHub Actions)
+
+3. Testing
+
+- Unit tests for coordinate transformations
+- Capture simulation framework
+- Performance benchmarking suite
+
+Anti-Cheat Mitigations
+
+1. Obfuscation
+
+- Randomize window titles/class names
+- DirectX hook masking
+- Mouse event spoofing (hardware IDs)
+
+2. Behavioral
+
+- Variable activation delays
+- "Human" jitter simulation
+- Process hollowing techniques
+
+Roadmap
+
+Phase 1 (Stability): Resource leaks, thread safety, config system  
+Phase 2 (Performance): CUDA optimization, pipeline refactoring  
+Phase 3 (Features): Prediction algorithms, diagnostic UI  
+Phase 4 (Stealth): Anti-cheat evasions, driver-level input  
