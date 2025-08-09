@@ -11,8 +11,9 @@ cAimbot/
     - ScreenCapturer.hpp
     - TargetDetector.hpp
  - src/
-    - main.cpp
     - InputController.cpp
+    - main.cpp
+    - SafetyHandler.cpp
     - ScreenCapturer.cpp
     - TargetDetector.cpp
  - CMakeLists.txt
