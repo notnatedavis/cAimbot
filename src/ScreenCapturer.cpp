@@ -172,6 +172,9 @@ bool ScreenCapturer::reinitializeDuplication() {
  * implements automatic recovery for display configuration changes
  */
 cv::Mat ScreenCapturer::capture() {
+    // lock buffer access for thread safety
+    std::lock_guard<std::mutex> lock(m_bufferMutex);
+
     DXGI_OUTDUPL_FRAME_INFO frameInfo;
     IDXGIResource* resource = nullptr;
     

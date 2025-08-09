@@ -91,21 +91,9 @@ _MacOS_
 
 This portion is for logging or storing notes relevent to the project and its scope.
 
-## Current Focus (check off as I go)
+## Current Focus (delete as I go)
 
 Critical Fixes & Stability
-
-1. Memory Management & Resource Leaks
-
-- Fix DXGI resource leaks in `ScreenCapturer` (missing Release() for factory/adapter/output)
-- Add error handling in ScreenCapturer::capture() for DXGI_ERROR_ACCESS_LOST (requires reinitialization)
-- Validate COM object initialization with SUCCEEDED() checks
-
-2. Thread Safety
-
-- Make InputController::move_mouse() thread-safe (currently non-reentrant)
-- Add mutexes for shared resources (e.g., ScreenCapturer buffers)
-- Implement atomic flags in main loop for emergency stop
 
 3. Emergency System
 
