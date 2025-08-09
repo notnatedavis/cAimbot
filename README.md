@@ -94,14 +94,6 @@ This portion is for logging or storing notes relevent to the project and its sco
 
 ## Current Focus (delete as I go)
 
-Critical Fixes & Stability
-
-3. Emergency System
-
-- Global hotkey listener (separate thread) for F10 kill switch
-- Add stack unwinding for graceful shutdown
-- Windows UAC compatibility notes in README
-
 Performance Optimizations
 
 1. Capture Pipeline
