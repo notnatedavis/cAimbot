@@ -6,7 +6,7 @@
 
 /*
  * low latency screen capture
- * initializes DirectX resources and screen duplication
+ * constructor : initializes DirectX resources and screen duplication
  * throws std::runtime_error on critical failures
  * manages COM object lifetimes with careful release sequencing
  */
@@ -119,6 +119,7 @@ ScreenCapturer::ScreenCapturer() {
         throw;
     }
 }
+
 /*
  * reinitializes duplication interface after display configuration changes
  * returns true if successful, false else
